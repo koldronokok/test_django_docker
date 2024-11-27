@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: clinic_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: clinic_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+
+  web:
+    build:
+      context: .
+    container_name: web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=project.settings
+      - DJANGO_DB_NAME=clinic_db
+      - DJANGO_DB_USER=postgres
+      - DJANGO_DB_PASSWORD=root
+      - DJANGO_DB_HOST=db
+      - DJANGO_DB_PORT=5432

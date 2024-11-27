@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Госпіталізації</title>
+</head>
+<body>
+    <h1>Госпіталізації Пацієнтів</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Пацієнта</th>
+                <th>Дата поступлення</th>
+                <th>Дні в лікарні</th>
+                <th>Вартість лікування</th>
+                <th>Знижка</th>
+                <th>ID Лікаря</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hospitalization in hospitalizations %}
+                <tr>
+                    <td>{{ hospitalization.patient.id }}</td>
+                    <td>{{ hospitalization.admission_date }}</td>
+                    <td>{{ hospitalization.days_in_hospital }}</td>
+                    <td>{{ hospitalization.treatment_cost }}</td>
+                    <td>{{ hospitalization.discount }}</td>
+                    <td>{{ hospitalization.doctor.id }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
