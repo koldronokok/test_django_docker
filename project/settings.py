@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_name',  # Make sure this matches the actual folder name
+    'cinema',  # Додайте ваш додаток тут
 ]
+
 
 
 
@@ -79,22 +80,16 @@ WSGI_APPLICATION = "project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import os
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DJANGO_DB_NAME', 'clinic_db'),
-        'USER': os.getenv('DJANGO_DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD', 'root'),
-        'HOST': os.getenv('DJANGO_DB_HOST', 'db'),  # Should be 'db' as per your docker-compose.yml
-        'PORT': os.getenv('DJANGO_DB_PORT', '5432'),
+        'NAME': 'cinema_db',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
-
-
-
-
 
 
 # Password validation
