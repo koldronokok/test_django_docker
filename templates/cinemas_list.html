@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список Кінотеатрів</title>
 </head>
 <body>
     <h1>Список Кінотеатрів</h1>
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -19,31 +17,16 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Cinemas Data -->
+            {% for cinema in cinemas %}
             <tr>
-                <td>1</td>
-                <td>Cinema City</td>
-                <td>10.50</td>
-                <td>120</td>
-                <td>Kyiv, Maidan Nezalezhnosti, 1</td>
-                <td>+380501234567</td>
+                <td>{{ cinema.id }}</td>
+                <td>{{ cinema.name }}</td>
+                <td>{{ cinema.ticket_price }}</td>
+                <td>{{ cinema.seats_count }}</td>
+                <td>{{ cinema.address }}</td>
+                <td>{{ cinema.phone }}</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Multiplex</td>
-                <td>8.00</td>
-                <td>100</td>
-                <td>Kyiv, Khreshchatyk St, 25</td>
-                <td>+380502345678</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Oscar</td>
-                <td>12.00</td>
-                <td>150</td>
-                <td>Kyiv, Peremohy Ave, 45</td>
-                <td>+380503456789</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>
